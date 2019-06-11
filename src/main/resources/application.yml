@@ -1,0 +1,55 @@
+spring:
+  profiles.active: dev
+
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test?autoReconnect=true&connectTimeout=60000&socketTimeout=60000&useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: jess
+    password:
+    connectionTestQuery: select 1
+    minimum-idle: 5
+    maximum-pool-size: 5
+    connection-timeout: 3000
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    database: MYSQL
+    showSql: true
+    generateDdl: false
+    hibernate:
+      ddl-auto: update
+      use_sql_comments: true
+      show_sql: true
+      format_sql: true
+      dialect.storage_engine: innodb
+
+graphiql:
+  mapping: /graphiql
+  endpoint:
+    graphql: /graphql
+    subscriptions: /subscriptions
+  subscriptions:
+    timeout: 30
+    reconnect: false
+  static:
+    basePath: /
+  enabled: true
+  pageTitle: GraphiQL
+  cdn:
+    enabled: false
+    version: 0.13.0
+  props:
+    resources:
+      query: schema.graphqls
+      defaultQuery: schema.graphqls
+      variables: schema.graphqls
+    variables:
+      editorTheme: "solarized light"
+
+
+logging:
+  pattern:
+    console: "%d{HH:mm:ss} %-5level %logger{32} - %msg%n"
+    file: "%d{HH:mm:ss} %-5level %logger{32} - %msg%n"
+  level:
+    org.springframework: INFO
+    org.hibernate: DEBUG

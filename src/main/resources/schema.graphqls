@@ -1,0 +1,29 @@
+schema {
+    query : Query
+    mutation: Mutation
+}
+
+type Query {
+    schools : [School]
+    school(id: Long) : School
+    schoolByParams(name: String, location: String, type: String) : [School]
+}
+
+type Mutation {
+    deleteSchool(id: Long): School
+    createSchool(name: String, location: String, type: String): School
+}
+
+type School {
+    id: Long
+    name: String
+    type: String
+    location: String
+    students: [Student]
+}
+
+type Student {
+    id: Long
+    age: Int
+    name: String
+}
